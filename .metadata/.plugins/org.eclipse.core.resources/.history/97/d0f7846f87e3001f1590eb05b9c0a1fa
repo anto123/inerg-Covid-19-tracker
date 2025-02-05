@@ -1,0 +1,53 @@
+package com.inergTest;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import baseBrowser.Initialization;
+import pageObject.HomePage;
+import utilse.WebElementClass;
+
+public class TestClass {
+
+	@BeforeMethod
+	public void init() {
+		Initialization.setItUp("Goa");
+	}
+	
+	@Test
+	public void validateHomepageTitle() throws InterruptedException {
+		HomePage home=new HomePage();
+		String title=home.getHomepageTitle();
+		Assert.assertEquals(title, "InerG Test App");
+		home.openStreetMap();
+		//home.linechart();
+	}
+	
+	@Test
+	public void lineChartrepersentation() throws InterruptedException {
+		HomePage linechartobj=new HomePage();
+		linechartobj.linechart();
+	}
+	
+	@Test
+	public void leafletClickable() {
+		HomePage leaflefn=new HomePage();
+		leaflefn.leaflet();
+		String title=leaflefn.getHomepageTitle();
+		Assert.assertEquals(title, "");
+		
+	}
+	
+	public void openStreet() {
+		HomePage openStreet=new HomePage();
+		openStreet.openStreetMap();
+		String title=openStreet.getHomepageTitle();
+		Assert.assertEquals(title, "Leaflet - a JavaScript library for interactive maps");
+	}
+	
+	@AfterMethod
+	public void tearDown() {
+		WebElementClass.teardown();
+	}
+}

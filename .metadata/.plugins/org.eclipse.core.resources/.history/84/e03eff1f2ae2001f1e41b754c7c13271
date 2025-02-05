@@ -1,0 +1,44 @@
+package baseBrowser;
+
+import org.openqa.selenium.WebDriver;
+
+public class Initialization {
+
+	protected static WebDriver driver;
+
+	protected static String adminUrl;
+
+	protected static String baseUrl;
+
+	public static void setItUp(String url) {
+
+		driver = new BaseClass().getBrowser("Chrome");
+
+		driver.manage().window().maximize();
+
+		if (url.contains("admin")) {
+
+			adminUrl = "https://userguide.epixelcommerce.com/en/admin-login/";
+
+			driver.get(adminUrl);
+
+		} else {
+
+			baseUrl = "https://userguide.epixelcommerce.com/en/login/";
+
+			driver.get(baseUrl);
+
+		}
+
+	}
+
+	public static void cardup(String card) {
+
+		driver = new BaseClass().getBrowser("Chrome");
+
+		if (card.contains("card update")) {
+
+		}
+
+	}
+}

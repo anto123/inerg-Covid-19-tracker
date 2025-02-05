@@ -1,0 +1,28 @@
+package baseBrowser;
+
+import org.openqa.selenium.WebDriver;
+
+public class Initialization {
+
+	protected static WebDriver driver;
+	public static void setItUp(String url) {
+		driver =Browser.getBrowser("Chrome");
+		String URL = "https://inerg-test.web.app/";
+
+		driver.get(URL);
+
+
+	}
+
+}
+
+public static void cardup(String card) {
+
+	driver = Browser.getBrowser("Chrome");
+
+	if (card.contains("card update")) {
+
+	}
+
+}
+}

@@ -1,0 +1,12 @@
+package utilse;
+
+import baseBrowser.Initialization;
+import pageObject.HomePage;
+
+public class WebElementClass extends Initialization {
+   
+	public static void teardown() {
+		driver.quit();
+	}
+	
+}

@@ -1,0 +1,46 @@
+package com.inergTest;
+
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+import baseBrowser.Initialization;
+import pageObject.HomePage;
+import utilse.WebElementClass;
+
+public class TestClass {
+
+	@BeforeSuite
+	public void init() {
+		Initialization.setItUp("Goa");
+	}
+	
+	@Test(priority = 1)
+	public void validateHomepageTitle() throws InterruptedException {
+		HomePage home=new HomePage();
+		String title=home.getHomepageTitle();
+		Assert.assertEquals(title, "InerG Test App");
+	}
+	
+	@Test(enabled = false)
+	public void lineChartrepersentation() throws InterruptedException {
+		HomePage linechartobj=new HomePage();
+		linechartobj.linechart();
+	}
+	
+	@Test(priority = 3)
+	public void leafletClickable() {
+		HomePage leaflefn=new HomePage();
+		leaflefn.leaflet();
+	}
+	@Test(priority = 4)
+	public void openStreet() {
+		HomePage openStreet=new HomePage();
+		openStreet.openStreetMap();
+	}
+	
+	@AfterSuite
+	public void tearDown() {
+		WebElementClass.teardown();
+	}
+}

@@ -1,0 +1,67 @@
+package pageObject;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import baseBrowser.Initialization;
+
+public class HomePage extends Initialization{
+	WebDriverWait wait=null;
+	public HomePage() {
+		wait=new WebDriverWait(driver, Duration.ofSeconds(20));
+	}
+	public String getHomepageTitle() {
+		return driver.getTitle();
+	}
+
+	public static void click(String locators) {
+		driver.findElement(By.xpath(locators)).click();
+	}
+	public void linechart() throws InterruptedException {
+		Thread.sleep(3000);
+
+		By line = By.xpath( "//*[local-name()='svg']//*[name()='g' and @class='points']");
+
+		By toolTip = By.xpath( "//*[local-name()='svg']//*[name()='g' and @class='hovertext']//*[name()='text' and @class = 'num']");
+
+		List<WebElement> lineList = driver.findElements (line);
+
+		System.out.println("total lines in the graph:" + lineList.size());
+
+		Actions act = new Actions (driver);
+
+		for (WebElement ele: lineList) {
+
+			act.moveToElement(ele).perform();
+
+			Thread.sleep(5000);
+
+			String text = driver.findElement(toolTip).getText();
+
+			System.out.println(text);
+			driver.navigate().back();
+		}
+	}
+
+	public static void leaflet() {
+		WebElement element = driver.findElement(By.xpath("//a[text()=' Leaflet']"));
+
+		Actions actions = new Actions(driver);
+
+		actions.moveToElement(element).click().perform();
+		driver.navigate().back();
+	}
+
+	public static void openStreetMap() {
+		WebElement element = driver.findElement(By.xpath("//a[text()='OpenStreetMap']"));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element).click().perform();
+		driver.navigate().back();
+	}
+}
+

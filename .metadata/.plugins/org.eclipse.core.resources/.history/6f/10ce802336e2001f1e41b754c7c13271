@@ -1,0 +1,24 @@
+package com.inergTest;
+
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import baseBrowser.Initialization;
+import pageObject.HomePage;
+
+public class TestClass {
+
+	HomePage home=new HomePage();
+	
+	@BeforeMethod
+	public void init() {
+		Initialization.setItUp("Goa");
+	}
+	
+	@Test
+	public void validateHomepageTitle() {
+		String title=home.getHomepageTitle();
+		Assert.assertEquals(title, "InerG Test App");
+	}
+}

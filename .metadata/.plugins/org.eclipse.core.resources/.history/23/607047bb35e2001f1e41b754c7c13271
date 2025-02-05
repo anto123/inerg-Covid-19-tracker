@@ -1,0 +1,17 @@
+package com.inergTest;
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import pageObject.HomePage;
+
+public class TestClass {
+
+	HomePage home=new HomePage();
+	
+	@Test
+	public void validateHomepageTitle() {
+		String title=home.getHomepageTitle();
+		Assert.assertEquals(title, "InerG Test App");
+	}
+}
